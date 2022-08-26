@@ -12,20 +12,24 @@ Plug 'tpope/vim-fugitive'
 Plug 'preservim/nerdtree'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
+Plug 'folke/tokyonight.nvim', {'branch': 'main'}
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
+Plug 'fatih/vim-go', {'do': ':GoInstallBinaries'}
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'junegunn/vim-plug'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'SirVer/ultisnips'
 Plug 'jiangmiao/auto-pairs'
+Plug 'davidhalter/jedi-vim'
+Plug 'nvie/vim-flake8'
+Plug 'hynek/vim-python-pep8-indent'
+Plug 'dense-analysis/ale'
+Plug 'git://git.wincent.com/command-t.git'
 call plug#end()
 
 
 
-
-
+set encoding=utf-8
 set number
 set showmatch 
 set path+=**
@@ -40,9 +44,35 @@ if has('nvim')			" nvim 을 사용 중이라면
 	set inccommand=nosplit	" nvim live %s substitute (실시간 강조)
 endif
 
+" =========================================================================
+" =  python settings
+" =========================================================================
+"let g:jedi#show_call_signatures=0	" 자세히 설명하는 창을 보여준다 1=활성화 
+"let g:jedi#popup_select_first="0"	
+"filetype plugin indent on 
+
+syntax enable
+set tabstop=4 
+set shiftwidth=4 
+set expandtab
+filetype indent on 
 
 
 
+
+
+
+
+" =========================================================================
+" =  NERDTreeToggle settings
+" =========================================================================
+
+nnoremap <silent><F1> :NERDTreeToggle<CR><bar>:TagbarToggle <CR> 
+if has("syntax")
+	syntax on
+endif
+
+let g:NERDTreeWinSize=30
 
 " =========================================================================
 " =  theme settings
@@ -52,19 +82,16 @@ let g:tokyonight_style = "night"
 let g:tokyonight_italic_functions = 1
 let g:tokyonight_sidebars = [ "qf", "vista_kind", "terminal", "packer" ]
 let g:tokyonight_colors = {
-	\ 'hint': 'orange',
-	\ 'error': '#ff0000'
-\ }
-colorscheme tokyonight
-
-
+\ 'hint': 'orange',
+\ 'error': '#f7768e'
+\}
 let g:tagbar_position = 'rightbelow'
-
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#show_tabs = 1
+colorscheme tokyonight
 highlight ColorColumn guibg=White
 
-let g:airline_powerline_fonts = 1
-let g:NERDTreeWinSize=30
-let g:airline#extensions#tabline#show_tabs = 1
+
 
 
 " =========================================================================
@@ -98,6 +125,9 @@ autocmd BufNewFile, BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4
 autocmd FileType go nmap <leader>b  <Plug>(go-build)
 autocmd FileType go nmap <leader>r  <Plug>(go-run)
 autocmd FileType go nmap <leader>t  <Plug>(go-test)
+autocmd FileType go nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
+
+
 " run :GoBuild or :GoTestCompile based on the go file
 function! s:build_go_files()
   let l:file = expand('%')
@@ -108,10 +138,4 @@ function! s:build_go_files()
   endif
 endfunction
 
-autocmd FileType go nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
 
-
-nnoremap <silent><F1> :NERDTreeToggle<CR><bar>:TagbarToggle <CR> 
-if has("syntax")
-	syntax on
-endif
