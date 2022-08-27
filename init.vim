@@ -22,9 +22,8 @@ Plug 'SirVer/ultisnips'
 Plug 'jiangmiao/auto-pairs'
 Plug 'davidhalter/jedi-vim'
 Plug 'nvie/vim-flake8'
-Plug 'hynek/vim-python-pep8-indent'
+"Plug 'hynek/vim-python-pep8-indent'
 Plug 'dense-analysis/ale'
-Plug 'git://git.wincent.com/command-t.git'
 call plug#end()
 
 
@@ -43,24 +42,6 @@ set autowrite
 if has('nvim')			" nvim 을 사용 중이라면
 	set inccommand=nosplit	" nvim live %s substitute (실시간 강조)
 endif
-
-" =========================================================================
-" =  python settings
-" =========================================================================
-"let g:jedi#show_call_signatures=0	" 자세히 설명하는 창을 보여준다 1=활성화 
-"let g:jedi#popup_select_first="0"	
-"filetype plugin indent on 
-
-syntax enable
-set tabstop=4 
-set shiftwidth=4 
-set expandtab
-filetype indent on 
-
-
-
-
-
 
 
 " =========================================================================
