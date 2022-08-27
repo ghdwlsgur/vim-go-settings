@@ -22,7 +22,6 @@ Plug 'SirVer/ultisnips'
 Plug 'jiangmiao/auto-pairs'
 Plug 'davidhalter/jedi-vim'
 Plug 'nvie/vim-flake8'
-"Plug 'hynek/vim-python-pep8-indent'
 Plug 'dense-analysis/ale'
 call plug#end()
 
@@ -42,6 +41,14 @@ set autowrite
 if has('nvim')			" nvim 을 사용 중이라면
 	set inccommand=nosplit	" nvim live %s substitute (실시간 강조)
 endif
+
+" =========================================================================
+" =  UltiSnipsExpandTrigger settings
+" =========================================================================
+
+let g:UltiSnipsExpandTrigger = "<tab>"
+let g:UltiSnipsJumpForwardTrigger = "<tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 
 
 " =========================================================================
