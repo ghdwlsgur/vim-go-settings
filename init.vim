@@ -26,7 +26,7 @@ Plug 'dense-analysis/ale'
 call plug#end()
 
 
-
+filetype plugin on 
 set encoding=utf-8
 set number
 set showmatch 
@@ -42,10 +42,23 @@ if has('nvim')			" nvim 을 사용 중이라면
 	set inccommand=nosplit	" nvim live %s substitute (실시간 강조)
 endif
 
+
+" =========================================================================
+" =  python3 settings
+" =========================================================================
+" F9 파이썬 코드 실행하기 
+"autocmd FileType python map <buffer> <F9> :w<CR>:exec '!python3' shellescape(@%, 1)<CR>
+"autocmd BufRead,BufNewFile *.py nnoremap <F5> :exec '!python' shellescape(@%, 1)<cr>
+
+" (ctrl + shift + p) autocomplete :! python3
+"map <C-S-p> :!python3<Space>
+autocmd FileType python map <C-S-p> :w<CR>:exec '!python3' shellescape(@%, 1)<CR>
+
+
+
 " =========================================================================
 " =  UltiSnipsExpandTrigger settings
 " =========================================================================
-
 let g:UltiSnipsExpandTrigger = "<tab>"
 let g:UltiSnipsJumpForwardTrigger = "<tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
@@ -54,7 +67,6 @@ let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 " =========================================================================
 " =  NERDTreeToggle settings
 " =========================================================================
-
 nnoremap <silent><F1> :NERDTreeToggle<CR><bar>:TagbarToggle <CR> 
 if has("syntax")
 	syntax on
@@ -109,11 +121,11 @@ autocmd Filetype go command! -bang AS call go#alternate#Switch(<bang>0, 'split')
 autocmd Filetype go command! -bang AT call go#alternate#Switch(<bang>0, 'tabe')
 autocmd FileType go nmap <Leader>c <Plug>(go-coverage-toggle):
 autocmd FileType go nmap <Leader>i <Plug>(go-info)
-autocmd BufNewFile, BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4
 autocmd FileType go nmap <leader>b  <Plug>(go-build)
 autocmd FileType go nmap <leader>r  <Plug>(go-run)
 autocmd FileType go nmap <leader>t  <Plug>(go-test)
 autocmd FileType go nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
+autocmd BufNewFile, BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4
 
 
 " run :GoBuild or :GoTestCompile based on the go file
