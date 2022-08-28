@@ -44,7 +44,7 @@ endif
 
 
 " =========================================================================
-" =  python3 settings
+" =  python3, go exec settings
 " =========================================================================
 " F9 파이썬 코드 실행하기 
 "autocmd FileType python map <buffer> <F9> :w<CR>:exec '!python3' shellescape(@%, 1)<CR>
@@ -53,7 +53,7 @@ endif
 " (ctrl + shift + p) autocomplete :! python3
 "map <C-S-p> :!python3<Space>
 autocmd FileType python map <C-S-p> :w<CR>:exec '!python3' shellescape(@%, 1)<CR>
-
+autocmd FileType go map <C-S-p> :w<CR>:exec ':GoRun'<CR>
 
 
 " =========================================================================
