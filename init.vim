@@ -23,6 +23,12 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'davidhalter/jedi-vim'
 Plug 'nvie/vim-flake8'
 Plug 'dense-analysis/ale'
+Plug 'ryanoasis/vim-devicons'
+Plug 'plasticboy/vim-markdown'
+Plug 'hashivim/vim-terraform'
+Plug 'hashivim/vim-vagrant'
+Plug 'stephpy/vim-yaml'
+Plug 'jvirtanen/vim-hcl'
 call plug#end()
 
 
@@ -54,6 +60,8 @@ endif
 "map <C-S-p> :!python3<Space>
 autocmd FileType python map <C-S-p> :w<CR>:exec '!python3' shellescape(@%, 1)<CR>
 autocmd FileType go map <C-S-p> :w<CR>:exec ':GoRun'<CR>
+autocmd FileType go map <C-S> :w<CR>:exec ':w'<CR>
+
 
 
 " =========================================================================
@@ -63,11 +71,10 @@ let g:UltiSnipsExpandTrigger = "<tab>"
 let g:UltiSnipsJumpForwardTrigger = "<tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 
-
 " =========================================================================
 " =  NERDTreeToggle settings
 " =========================================================================
-nnoremap <silent><F1> :NERDTreeToggle<CR><bar>:TagbarToggle <CR> 
+nnoremap <silent><C-\> :NERDTreeToggle<CR><bar>:TagbarToggle <CR> 
 if has("syntax")
 	syntax on
 endif
