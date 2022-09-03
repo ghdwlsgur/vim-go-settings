@@ -48,7 +48,6 @@ if has('nvim')			" nvim 을 사용 중이라면
 	set inccommand=nosplit	" nvim live %s substitute (실시간 강조)
 endif
 
-
 " =========================================================================
 " =  python3, go exec settings
 " =========================================================================
@@ -60,8 +59,9 @@ endif
 "map <C-S-p> :!python3<Space>
 autocmd FileType python map <C-S-p> :w<CR>:exec '!python3' shellescape(@%, 1)<CR>
 autocmd FileType go map <C-S-p> :w<CR>:exec ':GoRun'<CR>
+autocmd FileType go map <C-S-l> :w<CR>:exec ':GoTest'<CR>
+autocmd FileType go map <C-S-k> :w<CR>:exec ':GoTestFunc'<CR>
 autocmd FileType go map <C-S> :w<CR>:exec ':w'<CR>
-
 
 
 " =========================================================================
@@ -97,6 +97,7 @@ let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#show_tabs = 1
 colorscheme tokyonight
 highlight ColorColumn guibg=White
+
 
 
 
